@@ -10,6 +10,7 @@ migrate = Migrate(app, db)
 
 manager = Manager(app)
 manager.add_command('db', MigrateCommand)
+manager.add_command('dbcreate', db.create_all())
 
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -23,7 +24,5 @@ class User(db.Model):
     def __repr__(self):
         return '<User %r>' % self.username
     
-
 if __name__ == '__main__':
-    # db.create_all()
     manager.run()
