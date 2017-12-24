@@ -1,5 +1,5 @@
 # -*- coding: UTF-8 -*-
-from app import db
+from .db import db
 
 '''实时分笔
 可以监控单个股票实时价格情况

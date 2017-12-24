@@ -1,5 +1,5 @@
 # -*- coding: UTF-8 -*-
-from app import db
+from .db import db
 
 '''历史分笔
 把过去每天每个时间的分笔数记录下来

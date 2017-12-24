@@ -1,5 +1,5 @@
 # -*- coding: UTF-8 -*-
-from app import db
+from .db import db
 
 '''机构席位追踪
 获取机构近5、10、30、60日累积买卖次数和金额情况

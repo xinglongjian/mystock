@@ -1,5 +1,5 @@
 # -*- coding: UTF-8 -*-
-from app import db
+from .db import db
 
 '''
 股票的基本信息

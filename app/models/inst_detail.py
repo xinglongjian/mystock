@@ -1,5 +1,5 @@
 # -*- coding: UTF-8 -*-
-from app import db
+from .db import db
 
 '''机构成交明细
 获取最近一个交易日机构席位成交明细统计情况

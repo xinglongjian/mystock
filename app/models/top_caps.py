@@ -1,5 +1,5 @@
 # -*- coding: UTF-8 -*-
-from app import db
+from .db import db
 
 '''个股上榜统计
 把近5、10、30、60日个股上榜统计数据

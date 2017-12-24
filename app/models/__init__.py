@@ -1,7 +1,7 @@
 from flask import Blueprint
 
 models = Blueprint('models', __name__)
-
+from .db import *
 from .stock import *
 from .stock_basic import *
 from .profit_data import *

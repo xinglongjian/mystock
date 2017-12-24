@@ -1,5 +1,5 @@
 # -*- coding: UTF-8 -*-
-from app import db
+from .db import db
 
 '''每日龙虎榜列表
 按日期获取历史当日上榜的个股数据，如果一个股票有多个上榜原因，则会出现多条数据
