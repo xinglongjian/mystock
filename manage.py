@@ -6,9 +6,11 @@ from log import *
 
 app = create_app(os.getenv('FLASK_CONFIG') or 'default')
 app.app_context().push()
+#create tables
+
 
 manager = Manager(app)
-manager.add_command('runserver', Server(use_debugger=False))
+manager.add_command('runserver', Server(use_debugger=True))
 
 @manager.command
 def make_shell_context():
