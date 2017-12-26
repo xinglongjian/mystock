@@ -12,6 +12,10 @@ app = create_app(os.getenv('FLASK_CONFIG') or 'default')
 manager = Manager(app)
 manager.add_command('runserver', Server(use_debugger=True))
 
+#启动定时调度
+from scheduler.task import stock_basic_task as sbt
+sbt.start()
+
 if __name__ == '__main__':
     logging.info('start server...')
     scheduler.start()

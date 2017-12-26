@@ -6,3 +6,4 @@ logging.basicConfig(level=logging.DEBUG,
                     datefmt='%a, %d %b %Y %H:%M:%S',
                     filename='stock.log',
                     filemode='w')
+logging.getLogger('apscheduler').setLevel(logging.DEBUG)

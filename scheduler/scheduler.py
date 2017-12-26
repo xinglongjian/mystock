@@ -1,4 +1,5 @@
-from apscheduler.schedulers.background import BackgroundScheduler
+# -*- coding: UTF-8 -*-
+from apscheduler.schedulers.background import BlockingScheduler
 from apscheduler.executors.pool import ThreadPoolExecutor, ProcessPoolExecutor
 from apscheduler.jobstores.sqlalchemy import SQLAlchemyJobStore
 from config import *
@@ -14,10 +15,10 @@ executors = {
 def myfunc():
     print('hello')
 
-scheduler = BackgroundScheduler(daemonic=False,executors=executors)
-scheduler.add_job(myfunc, 'interval', minutes=2)
+scheduler = BlockingScheduler(daemonic=False,executors=executors)
+scheduler.add_job(myfunc, 'interval', seconds=3)
 
-# @schedudler.cron_schedule(second='*', day_of_week='0-', hour='9-12,13-15')
+# @scheduler.cron_schedule(second='*', day_of_week='0-', hour='9-12,13-15')
 # def quote_send_sh_job():
 #     print('a simple cron job start at')
 
