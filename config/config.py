@@ -1,7 +1,7 @@
 # -*- coding: UTF-8 -*-
 import os
 basedir = os.path.abspath(os.path.dirname(__file__))
-
+mysqlurl = 'mysql://xinglongjian1:@localhost/c9?charset=utf8'
 
 class Config:
     SECRET_KEY = os.environ.get('SECRET_KEY') or 'hard to guess string'
@@ -30,7 +30,7 @@ class Config:
 
 class DevelopmentConfig(Config):
     DEBUG = False
-    SQLALCHEMY_DATABASE_URI = 'mysql://xinglongjian1:@localhost/c9?charset=utf8'
+    SQLALCHEMY_DATABASE_URI = mysqlurl
 
 config = {
     'development': DevelopmentConfig,
