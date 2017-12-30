@@ -9,6 +9,8 @@ from log import *
 from scheduler.scheduler import scheduler
 
 app = create_app(os.getenv('FLASK_CONFIG') or 'default')
+app.app_context().push()
+db.init_app(app)
 manager = Manager(app)
 manager.add_command('runserver', Server(use_debugger=True))
 
@@ -18,5 +20,5 @@ sbt.start()
 
 if __name__ == '__main__':
     logging.info('start server...')
-    scheduler.start()
-    manager.run()
+    # scheduler.start()
+    manager.run(default_command='runserver')

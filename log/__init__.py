@@ -1,5 +1,9 @@
 # -*- coding: UTF-8 -*-
 import logging
+import logging.handlers
+
+log_filename = 'stock.log'
+
 
 logging.basicConfig(level=logging.DEBUG,
                     format='%(asctime)s %(levelname)s %(message)s',

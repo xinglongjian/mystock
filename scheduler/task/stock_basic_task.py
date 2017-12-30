@@ -1,11 +1,9 @@
 # -*- coding: UTF-8 -*-
-from urllib.error import HTTPError
-
 from sqlalchemy import Float
 
 from app.models import StockBasic, Stock
 import tushare as ts
-from app import db
+from app.models import db
 from datetime import datetime
 from util.date_util import *
 from log import *
@@ -21,18 +19,20 @@ from log import *
 
 def start():
 
-    start_date = get_date(2017,7,10)
-    end_date = get_date(2017,12,26)
-
+    start_date = get_date(2017,12,30)
+    end_date = get_date(2017,7,1)
+    logging.info('start task...')
     while start_date >= end_date:
         date_str = str(start_date)
         #如果是节假日就返回
+        logging.info('start is_holiday...%s', date_str)
         if ts.is_holiday(date_str):
             start_date = get_last_day(start_date)
             continue
-
+        logging.info('end is_holiday...%s', date_str)
         try:
             df = ts.get_stock_basics(date_str)
+            logging.info('get_stock_basics success')
             df = df.fillna(0)
             # df['esp'] = df['esp'].astype('float')
             for index, row in df.iterrows():
@@ -50,13 +50,13 @@ def start():
                 try:
                     commit_to_db()
                 except Exception as e:
-                    logging.error("error:date_str:%s,caused by:%s,row:%s", date_str, e.args[0], row)
-        except HTTPError as ex:
-            logging.error("error:date:%s Not Found",date_str)
-            start_date = get_last_day(start_date)
-            continue
+                    logging.error("error to commit:date_str:%s,caused by:%s,row:%s", date_str, e.args[0], row)
+        # except HTTPError as ex:
+        #     logging.error("error:date:%s Not Found",date_str)
+        #     start_date = get_last_day(start_date)
+        #     continue
         except Exception as ex:
-            logging.error("error:date_str:%s,caused by:%s,row:%s",date_str, ex.args[0],row)
+            logging.error("error:date_str:%s,caused by:%s",date_str, ex.args[0])
             break
         logging.info("finsish :%s",start_date)
         start_date = get_last_day(start_date)
@@ -65,7 +65,7 @@ def start():
 
 
 def add_to_db(index, item, date_str):
-
+    logging.info('add_to_db...%s', date_str)
     #查看stock里是不是有
     stock_is_exist = Stock.query.filter_by(code=index).first()
     if stock_is_exist is None:
