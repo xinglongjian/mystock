@@ -8,3 +8,8 @@ learn python meachine learning and stock
 >3、flask db upgrade
 注意：如果报alembic.util.exc.CommandError: Target database is not up to date.把migrations里versions中文件删掉
 重新执行2，3
+
+#初始化数据
+/data/csv将数据存储为csv格式
+/data/script 执行数据存储的脚本
+
